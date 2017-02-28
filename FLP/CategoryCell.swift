@@ -10,6 +10,8 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var featuredController: FeaturedController?
+    
     var tourCategory: TourCategory? {
         didSet{
             if let name = tourCategory?.name {
@@ -43,6 +45,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.translatesAutoresizingMaskIntoConstraints = false
         collectionview.backgroundColor = .clear
+        collectionview.showsHorizontalScrollIndicator = false
         return collectionview
     }()
     
@@ -96,5 +99,13 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 14, 0, 14)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let tour = tourCategory?.tours?[indexPath.item] {
+            featuredController?.showTourDetailForTour(tour)
+        } else {
+            print("error: no tour")
+        }
     }
 }

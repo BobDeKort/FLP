@@ -21,12 +21,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
+        let tabBarController = UITabBarController()
+        
+        // FeaturedController
         let layout = UICollectionViewFlowLayout()
-        let featuredController = FeaturedController(collectionViewLayout: layout)
+        let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
+        
+        featuredController.tabBarItem = UITabBarItem(title: "Featured", image: UIImage(named:"featured"), tag: 1)
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 1, green: 120/255, blue: 44/255, alpha: 1)
         
-        window?.rootViewController = UINavigationController(rootViewController: featuredController)
+        // AcountController
+        
+        let accountController = UINavigationController(rootViewController: AccountViewController())
+        accountController.tabBarItem = UITabBarItem(title: "Account", image: UIImage(named:"account"), tag: 2)
+        
+        
+        let tabbarControllers = [featuredController, accountController]
+        tabBarController.viewControllers = tabbarControllers
+        
+        window?.rootViewController = tabBarController
         
         
         return true

@@ -13,9 +13,12 @@ class FeaturedBannerCell: BaseCell {
     var tour: Tour? {
         didSet{
             if let tour = tour {
-                titleLabel.text = tour.name
+                titleLabel.text = tour.title
                 imageView.image = UIImage(named: tour.imageName)
-                subTitleLabel.text = "~\(tour.duration) - updated \(tour.updated)"
+                if let updated = tour.updated {
+                    subTitleLabel.text = "~\(tour.duration) - updated \(updated)"
+                }
+                
             }
         }
     }

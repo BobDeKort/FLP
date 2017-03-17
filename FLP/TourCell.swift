@@ -13,9 +13,14 @@ class TourCell: UICollectionViewCell {
     var tour: Tour? {
         didSet{
             if let tour = tour {
-                titleLabel.text = tour.name
-                imageView.image = UIImage(named: tour.imageName)
-                subTitleLabel.text = "~\(tour.duration) - updated \(tour.updated)"
+                titleLabel.text = tour.title
+//                imageView.image = UIImage(named: tour.imageName)
+                imageView.downloadedFrom(link: "\(tour.imageName)-mobile.")
+                if let updated = tour.updated {
+                    subTitleLabel.text = "~\(tour.duration) hours - updated \(updated)"
+                } else {
+                    subTitleLabel.text = "~\(tour.duration) hours"
+                }
             }
         }
     }
@@ -45,38 +50,34 @@ class TourCell: UICollectionViewCell {
         return label
     }()
     
+    let ratingView: RatingView = {
+        let rv = RatingView()
+        rv.translatesAutoresizingMaskIntoConstraints = false
+        return rv
+    }()
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 15
+        iv.layer.cornerRadius = 7
         iv.layer.masksToBounds = true
         return iv
     }()
     
-    let starRating: CosmosView = {
-        let view = CosmosView()
-        view.totalStars = 5
-        view.filledColor = .yellow
-        view.emptyColor = .clear
-        view.starSize = 20
-        view.rating = 5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     func setupViews(){
         setBackgroundImage()
-        addSubview(starRating)
         addSubview(titleLabel)
         addSubview(subTitleLabel)
+        addSubview(ratingView)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": titleLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": titleLabel]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": subTitleLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": subTitleLabel]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(self.bounds.width - starRating.bounds.width)-[v0]-7-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": starRating]))
+        addConstraintsWithFormat("V:|-\((((self.backgroundView?.bounds.height)!/2) + 5))-[v0][v1]-5-|", views: titleLabel, subTitleLabel)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-4-[v0]-\((((self.backgroundView?.bounds.height)!/2) - starRating.bounds.height)+5)-[v1][v2]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": starRating, "v1": titleLabel, "v2": subTitleLabel]))
+        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1, constant: -5))
+        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .right, relatedBy: .equal, toItem: self.backgroundView, attribute: .right, multiplier: 1, constant: -45))
     }
     
     func setBackgroundImage() {
@@ -89,6 +90,8 @@ class TourCell: UICollectionViewCell {
         self.backgroundView = imageView
         self.backgroundView?.addSubview(blurEffectView)
     }
-    
+}
+
+class Rating: UIView {
     
 }

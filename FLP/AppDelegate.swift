@@ -21,27 +21,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-        let tabBarController = UITabBarController()
+        let isloggedIn = UserDefaults.standard.value(forKey: "user_auth_token")
         
-        // FeaturedController
-        let layout = UICollectionViewFlowLayout()
-        let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
-        
-        featuredController.tabBarItem = UITabBarItem(title: "Featured", image: UIImage(named:"featured"), tag: 1)
-        
-        UINavigationBar.appearance().barTintColor = UIColor(red: 1, green: 120/255, blue: 44/255, alpha: 1)
-        
-        // AcountController
-        
-        let accountController = UINavigationController(rootViewController: AccountViewController())
-        accountController.tabBarItem = UITabBarItem(title: "Account", image: UIImage(named:"account"), tag: 2)
-        
-        
-        let tabbarControllers = [featuredController, accountController]
-        tabBarController.viewControllers = tabbarControllers
-        
-        window?.rootViewController = tabBarController
-        
+        if isloggedIn as? String != nil {
+            let tabBarController = UITabBarController()
+            
+            // FeaturedController
+            let layout = UICollectionViewFlowLayout()
+            let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
+            
+            featuredController.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named:"featured"), tag: 1)
+            
+            UINavigationBar.appearance().barTintColor = UIColor.projectColor()
+            
+            // AcountController
+
+            let accountLayout = UICollectionViewFlowLayout()
+            accountLayout.minimumInteritemSpacing = 20
+            
+            let accountController = UINavigationController(rootViewController: AccountViewController(collectionViewLayout: accountLayout))
+            accountController.tabBarItem = UITabBarItem(title: "My Tours", image: UIImage(named:"myTours"), tag: 2)
+            
+            
+            let tabbarControllers = [featuredController, accountController]
+            tabBarController.viewControllers = tabbarControllers
+            
+            window?.rootViewController = tabBarController
+        } else {
+            let vc = OnboardingViewController()
+            
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+        }
         
         return true
     }

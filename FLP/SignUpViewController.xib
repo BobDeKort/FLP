@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="FLP" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmPasswordField" destination="oga-hj-WzZ" id="uiC-Ff-Hrh"/>
+                <outlet property="emailField" destination="OzC-fS-88r" id="IF1-pi-U6D"/>
+                <outlet property="passwordField" destination="M1T-3Y-2O1" id="7ff-vb-Cpa"/>
+                <outlet property="signupButton" destination="QCc-5p-wb4" id="4vT-h8-ppt"/>
+                <outlet property="usernameField" destination="nwa-s6-OUk" id="7mL-cs-QXE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nwa-s6-OUk">
+                    <rect key="frame" x="47" y="132" width="281" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OzC-fS-88r">
+                    <rect key="frame" x="47" y="195" width="281" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1T-3Y-2O1">
+                    <rect key="frame" x="47" y="258" width="281" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCc-5p-wb4">
+                    <rect key="frame" x="155" y="543" width="65" height="30"/>
+                    <state key="normal" title="Sign Up"/>
+                    <connections>
+                        <action selector="signUpPressed:" destination="-1" eventType="touchUpInside" id="xeJ-14-9e6"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oga-hj-WzZ">
+                    <rect key="frame" x="47" y="321" width="281" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QCc-5p-wb4" secondAttribute="bottom" constant="94" id="FnN-kU-B9L"/>
+                <constraint firstItem="OzC-fS-88r" firstAttribute="top" secondItem="nwa-s6-OUk" secondAttribute="bottom" constant="33" id="Fq6-es-hkd"/>
+                <constraint firstAttribute="trailing" secondItem="QCc-5p-wb4" secondAttribute="trailing" constant="155" id="JWt-kW-q6V"/>
+                <constraint firstAttribute="trailing" secondItem="OzC-fS-88r" secondAttribute="trailing" constant="47" id="TgP-Yz-rqD"/>
+                <constraint firstItem="QCc-5p-wb4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="155" id="UIW-ja-eGN"/>
+                <constraint firstItem="OzC-fS-88r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="47" id="WUF-8O-OoY"/>
+                <constraint firstItem="nwa-s6-OUk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="47" id="XvT-Ap-2oN"/>
+                <constraint firstAttribute="trailing" secondItem="M1T-3Y-2O1" secondAttribute="trailing" constant="47" id="Z7t-jX-9dP"/>
+                <constraint firstItem="M1T-3Y-2O1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="47" id="bHF-1n-Xck"/>
+                <constraint firstAttribute="trailing" secondItem="nwa-s6-OUk" secondAttribute="trailing" constant="47" id="ddR-1x-GcQ"/>
+                <constraint firstItem="M1T-3Y-2O1" firstAttribute="top" secondItem="OzC-fS-88r" secondAttribute="bottom" constant="33" id="eS2-16-yji"/>
+                <constraint firstAttribute="trailing" secondItem="oga-hj-WzZ" secondAttribute="trailing" constant="47" id="h12-YX-nhY"/>
+                <constraint firstItem="oga-hj-WzZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="47" id="kPd-Ye-UTf"/>
+                <constraint firstItem="oga-hj-WzZ" firstAttribute="top" secondItem="M1T-3Y-2O1" secondAttribute="bottom" constant="33" id="kwJ-jx-Yg9"/>
+                <constraint firstItem="nwa-s6-OUk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="132" id="oxg-K0-qtG"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

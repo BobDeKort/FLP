@@ -11,32 +11,45 @@ import UIKit
 
 class FeaturedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    // MARK: File Private Variables
+    
     fileprivate let categoryCellId = "categoryCell"
     fileprivate let bannerId = "headerId"
     
-    var featuredTours: [Tour]?
-    var tourCategories: [TourCategory]?
+    // MARK: Variables
     
+    var featuredTours: [Tour]?
+    var tourCategories: [TourCategory]?{
+        didSet{
+            collectionView?.reloadData()
+        }
+    }
+    
+    // MARK: View Controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tourCategories = TourCategory.sampleData()
+        ApiService.sharedInstance.getTourCategories { (categories) in
+            
+            let sortedCategories = categories.sorted( by: { ($0.0.tours?.count)! > ($0.1.tours?.count)! })
+            
+            self.tourCategories = sortedCategories
+        }
         
         // Setup
-        self.title = "Featured"
+        self.title = "Discover"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         
         collectionView?.backgroundColor = .white
         collectionView?.register(CategoryCell.self, forCellWithReuseIdentifier: categoryCellId)
-        collectionView?.register(FeaturedBanner.self, forCellWithReuseIdentifier: bannerId)
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = tourCategories?.count {
-            return count + 1
+            return count
         }
         return 0
 
@@ -44,27 +57,18 @@ class FeaturedController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.item == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bannerId, for: indexPath) as! FeaturedBanner
-            cell.featuredController = self
-            return cell
-        }
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! CategoryCell
         // Configure the cell
-        cell.tourCategory = tourCategories?[indexPath.item-1]
+        cell.tourCategory = tourCategories?[indexPath.item]
         cell.featuredController = self
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.item == 0 {
-            return CGSize(width: view.frame.width, height: 200)
-        }
         return CGSize(width: view.frame.width, height: 160)
     }
     
-    //MARK:
+    //MARK: Navigation
     
     func showTourDetailForTour(_ tour: Tour) {
         let layout = UICollectionViewFlowLayout()

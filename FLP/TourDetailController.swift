@@ -11,20 +11,23 @@ import UIKit
 
 
 class TourDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
-    var tour: Tour?
 
+    // MARK: Fileprivate Variables
+    
     fileprivate let reuseIdentifier = "Cell"
     fileprivate let headerId = "headerId"
     fileprivate let descriptionId = "descriptionId"
     fileprivate let mapId = "mapId"
     fileprivate let reviewId = "reviewId"
     
+    // MARK: Variables
+    
+    var tour: Tour?
+    
+    // MARK: ViewController lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         collectionView?.register(TourDetailHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
@@ -69,6 +72,7 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! TourDetailHeader
         header.tour = tour
+        header.parent = self
         return header
     }
     
@@ -92,6 +96,8 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         
         return CGSize(width: view.frame.width, height: 170)
     }
+    
+    // MARK: Description Setup
     
     fileprivate func descriptionAttributedText() -> NSAttributedString {
         let attributedText = NSMutableAttributedString(string: "", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)])

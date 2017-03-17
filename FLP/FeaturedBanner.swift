@@ -30,11 +30,11 @@ class FeaturedBanner: UICollectionViewCell, UICollectionViewDataSource, UICollec
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
-        
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.translatesAutoresizingMaskIntoConstraints = false
         collectionview.backgroundColor = .clear
         collectionview.showsHorizontalScrollIndicator = false
+        collectionview.isPagingEnabled = true
         return collectionview
     }()
     
@@ -84,11 +84,26 @@ class FeaturedBanner: UICollectionViewCell, UICollectionViewDataSource, UICollec
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func populateData(){
-        let tour = Tour(id: 1, name: "Best Tour Ever", category: "Food", description: "Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after. Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after.", imageName: "image1", price: 1.99, updated: "3 days ago", duration: "3hr")
         
-        let tour2 = Tour(id: 2, name: "worst Tour", category: "Fun", description: "Can curiosity may end shameless explained. True high on said mr on come. An do mr design at little myself wholly entire though. Attended of on stronger or mr pleasure. Rich four like real yet west get. Felicity in dwelling to drawings. His pleasure new steepest for reserved formerly disposed jennings. ", imageName: "image2", price: 0.99, updated: "3 days ago", duration: "3hr")
+//        let user = User(email: "testing", first: "bob", last: "De Kort", reviews: nil, tours: nil, purchasedTours: nil)
+//
         
+        let tour = Tour(id: "2", title: "Test", city: "San Francisco", duration: "6hrs", description: "fghjvbknl,czbenoe", category: "Nightlife", price: 0.99, estimatedCost: nil, nps: nil, averageRating: nil, user: "2", stops: nil, reviews: nil, imageName: "image2", updated: nil)
+//        let tour = Tour(id: 1, title: "Best Tour Ever", city: "San Francisco", duration: "3hrs", description: "Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after. Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after.", price: 1.99, estimatedCost: 1.99, nps: 100, averageRating: 10, user: user, stops: nil, reviews: nil, imageName: "image1", updated: "3 days ago")
+        
+        let tour2 = Tour(id: "2", title: "Test", city: "San Francisco", duration: "6hrs", description: "fghjvbknl,czbenoe", category: "Nightlife", price: 0.99, estimatedCost: nil, nps: nil, averageRating: nil, user: "2", stops: nil, reviews: nil, imageName: "image2", updated: nil)
+//        
+//        let tour2 = Tour(id: 1, title: "Best Tour Ever", city: "San Francisco", duration: "3hrs", description: "Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after. Offices parties lasting outward nothing age few resolve. Impression to discretion understood to we interested he excellence. Him remarkably use projection collecting. Going about eat forty world has round miles. Attention affection at my preferred offending shameless me if agreeable. Life lain held calm and true neat she. Much feet each so went no from. Truth began maids linen an mr to after.", price: 1.99, estimatedCost: 1.99, nps: 100, averageRating: 10, user: user, stops: nil, reviews: nil, imageName: "image1", updated: "3 days ago")
+//        
         self.featuredTours = [tour, tour2]
     }
 }

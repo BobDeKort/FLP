@@ -14,12 +14,10 @@ class MyTourCollectionViewCell: UICollectionViewCell {
         didSet{
             if let tour = tour {
                 titleLabel.text = tour.title
-                imageView.image = UIImage(named: tour.imageName)
-                if let updated = tour.updated {
-                    subTitleLabel.text = "~\(tour.duration) hours - updated \(updated)"
-                } else {
-                    subTitleLabel.text = "~\(tour.duration) hours"
-                }
+                imageView.downloadedFrom(link: "\(tour.imageName)-mobile.")
+                let dateFormatter = DateFormatter()
+                let updatedString = "Updated: " + dateFormatter.timeSince(from: (tour.updated as NSDate))
+                subTitleLabel.text = "Duration: \(tour.duration) hours - \(updatedString)"
             }
         }
     }
@@ -51,8 +49,6 @@ class MyTourCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "image1")
-        iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 15
         iv.layer.masksToBounds = true
         return iv
@@ -75,7 +71,6 @@ class MyTourCollectionViewCell: UICollectionViewCell {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.alpha = 0.65
         blurEffectView.frame = CGRect(x: 0, y: self.bounds.midY + 20 , width: self.bounds.width, height: self.bounds.height)
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         self.backgroundView = imageView
         self.backgroundView?.addSubview(blurEffectView)

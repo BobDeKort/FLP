@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class TourDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     // MARK: Fileprivate Variables
@@ -22,6 +20,11 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
     
     // MARK: Variables
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        return ai
+    }()
+    
     var tour: Tour?
     
     // MARK: ViewController lifecycle
@@ -29,6 +32,7 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.tintColor = .white
         // Register cell classes
         collectionView?.register(TourDetailHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
@@ -36,37 +40,54 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.register(TourDetailMap.self, forCellWithReuseIdentifier: mapId)
         collectionView?.register(TourDetailReviews.self, forCellWithReuseIdentifier: reviewId)
 
-        navigationController?.navigationBar.tintColor = .white
         collectionView?.backgroundColor = .white
         collectionView?.alwaysBounceVertical = true
         
+        setupActivityMonitor()
+    }
+    
+    func setupActivityMonitor(){
+        activityIndicator.center = self.view.center
+        self.view.addSubview(activityIndicator)
     }
 
     // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        if tour?.reviews != nil {
+            if tour?.reviews?.count == 0 {
+                return 1
+            } else {
+                return 2
+            }
+        } else {
+            return 1
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.item == 0 {
+        
+        
+        // With map
+        switch indexPath.item {
+        case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionId, for: indexPath) as! TourDetailDescriptionCell
             
             cell.textView.attributedText = descriptionAttributedText()
             
             return cell
-        } else if indexPath.item == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mapId, for: indexPath) as! TourDetailMap
+        case 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewId, for: indexPath) as! TourDetailReviews
+            if let tour = tour {
+                cell.tourId = tour.id
+                cell.reviewsIds = tour.reviews
+            }
             
             return cell
-        } else if indexPath.item == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mapId, for: indexPath) as! TourDetailReviews
-            
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
             return cell
         }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -76,25 +97,28 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         return header
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if indexPath.item == 0 {
-            
+        switch indexPath.item {
+        // description cell
+        case 0:
             let dummySize = CGSize(width: view.frame.width - 8 - 8, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin)
             let rect = descriptionAttributedText().boundingRect(with: dummySize, options: options, context: nil)
             
             return CGSize(width: view.frame.width, height: rect.height + 50)
-        } else if indexPath.item == 1 {
-            
-            return CGSize(width: view.frame.width, height: 230)
+        // review cell
+        case 1:
+            return CGSize(width: view.frame.width, height: 260)
+        default:
+            return CGSize(width: view.frame.width, height: 170)
         }
-        
-        return CGSize(width: view.frame.width, height: 170)
     }
     
     // MARK: Description Setup
@@ -109,7 +133,7 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         attributedText.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
         
         if let desc = tour?.description {
-            attributedText.append(NSAttributedString(string: desc, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 11), NSForegroundColorAttributeName: UIColor.darkGray]))
+            attributedText.append(NSAttributedString(string: desc, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray]))
         }
         
         return attributedText

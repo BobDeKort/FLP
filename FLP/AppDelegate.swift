@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,40 +21,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         UIApplication.shared.statusBarStyle = .lightContent
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().keyboardDistanceFromTextField = 70
         
         let isloggedIn = UserDefaults.standard.value(forKey: "user_auth_token")
         
         if isloggedIn as? String != nil {
-            let tabBarController = UITabBarController()
-            
-            // FeaturedController
-            let layout = UICollectionViewFlowLayout()
-            let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
-            
-            featuredController.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named:"featured"), tag: 1)
-            
-            UINavigationBar.appearance().barTintColor = UIColor.projectColor()
-            
-            // AcountController
-
-            let accountLayout = UICollectionViewFlowLayout()
-            accountLayout.minimumInteritemSpacing = 20
-            
-            let accountController = UINavigationController(rootViewController: AccountViewController(collectionViewLayout: accountLayout))
-            accountController.tabBarItem = UITabBarItem(title: "My Tours", image: UIImage(named:"myTours"), tag: 2)
-            
-            
-            let tabbarControllers = [featuredController, accountController]
-            tabBarController.viewControllers = tabbarControllers
-            
-            window?.rootViewController = tabBarController
+            setTabbarControllerAsRoot()
         } else {
-            let vc = OnboardingViewController()
-            
+            let vc = LoginViewController()
             window?.rootViewController = UINavigationController(rootViewController: vc)
         }
         
         return true
+    }
+    
+    func setTabbarControllerAsRoot(){
+        let tabBarController = UITabBarController()
+        
+        // FeaturedController
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 10
+        let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
+        
+        featuredController.tabBarItem = UITabBarItem(title: "Planyts", image: UIImage(named:"featured"), tag: 1)
+        
+        UINavigationBar.appearance().barTintColor = UIColor.projectColor()
+        
+        // AcountController
+        
+        let accountLayout = UICollectionViewFlowLayout()
+        accountLayout.minimumInteritemSpacing = 20
+        
+        let accountController = UINavigationController(rootViewController: MyToursViewController(collectionViewLayout: accountLayout))
+        accountController.tabBarItem = UITabBarItem(title: "My Tours", image: UIImage(named:"myTours"), tag: 2)
+        
+        
+        let tabbarControllers = [featuredController, accountController]
+        tabBarController.viewControllers = tabbarControllers
+        
+        tabBarController.tabBar.tintColor = UIColor.projectSubColor()
+        
+        window?.rootViewController = tabBarController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

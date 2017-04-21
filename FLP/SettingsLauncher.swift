@@ -52,7 +52,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return [logoutSetting, feedbackSetting, cancelSetting]
     }()
     
-    var homeController: AccountViewController?
+    var homeController: MyToursViewController?
     
     func showSettings() {
         //show menu
@@ -103,7 +103,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
                 break
             case .Logout:
                 UserDefaults.standard.set(nil, forKey: "user_auth_token")
-                let vc = OnboardingViewController()
+                let vc = LoginViewController()
 //                let viewController = UINavigationController(rootViewController: vc)
 //                self.navigationController?.present(vc, animated: true, completion: nil)
                 self.navigationController?.tabBarController?.tabBar.isHidden = true

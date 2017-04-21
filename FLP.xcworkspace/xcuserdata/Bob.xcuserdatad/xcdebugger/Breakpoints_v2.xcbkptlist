@@ -9,13 +9,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FLP/TourDetailHeader.swift"
-            timestampString = "511221234.064401"
+            filePath = "FLP/ApiService.swift"
+            timestampString = "514336069.141438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "showDropIn(clientTokenOrTokenizationKey:)"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "purchaseTour(nonce:tourId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FLP.ApiService.purchaseTour (nonce : Swift.String, tourId : Swift.String) -&gt; ()"
+                  moduleName = "FLP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Bob/Desktop/FLP/iOS/FLP/FLP/ApiService.swift"
+                  timestampString = "514366641.72991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "482">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FLP.ApiService.purchaseTour (nonce : Swift.String, tourId : Swift.String) -&gt; ()"
+                  moduleName = "FLP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Bob/Desktop/FLP/iOS/FLP/FLP/ApiService.swift"
+                  timestampString = "514366641.732523"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "566">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FLP/ApiService.swift"
+            timestampString = "514336069.141438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "purchaseTour(nonce:tourId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +74,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FLP/ApiService.swift"
-            timestampString = "511474444.453487"
+            timestampString = "514336069.141438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "signUp(email:password:username:completionHandler:)"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "purchaseTour(nonce:tourId:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FLP/ApiService.swift"
+            timestampString = "514336069.141438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "postReview(tourId:review:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FLP/User.swift"
+            timestampString = "514358310.110889"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(json:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FLP.User.init (json : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;FLP.User&gt;"
+                  moduleName = "FLP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Bob/Desktop/FLP/iOS/FLP/FLP/User.swift"
+                  timestampString = "514366641.841567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FLP.User.init (json : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;FLP.User&gt;"
+                  moduleName = "FLP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Bob/Desktop/FLP/iOS/FLP/FLP/User.swift"
+                  timestampString = "514366641.844317"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "483">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

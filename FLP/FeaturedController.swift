@@ -37,7 +37,7 @@ class FeaturedController: UICollectionViewController, UICollectionViewDelegateFl
         }
         
         // Setup
-        self.title = "Discover"
+        self.title = "Planyts"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         
@@ -68,12 +68,17 @@ class FeaturedController: UICollectionViewController, UICollectionViewDelegateFl
         return CGSize(width: view.frame.width, height: 160)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(5, 0, 0, 0)
+    }
+    
     //MARK: Navigation
     
     func showTourDetailForTour(_ tour: Tour) {
         let layout = UICollectionViewFlowLayout()
         let tourDetailController = TourDetailController(collectionViewLayout: layout)
         tourDetailController.tour = tour
+        tourDetailController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(tourDetailController, animated: true)
     }
 }

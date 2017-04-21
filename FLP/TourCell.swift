@@ -14,12 +14,19 @@ class TourCell: UICollectionViewCell {
         didSet{
             if let tour = tour {
                 titleLabel.text = tour.title
-//                imageView.image = UIImage(named: tour.imageName)
                 imageView.downloadedFrom(link: "\(tour.imageName)-mobile.")
-                if let updated = tour.updated {
-                    subTitleLabel.text = "~\(tour.duration) hours - updated \(updated)"
+                let dateFormatter = DateFormatter()
+                subTitleLabel.text = "\(tour.duration) hours - \(dateFormatter.timeSince(from: tour.updated as NSDate))"
+                
+                if let rating = tour.averageRating {
+                    if rating > 5 {
+                        let newRating = rating/2
+                        ratingView.label.text = newRating.format(f: ".1")
+                    } else {
+                        ratingView.label.text = rating.format(f: ".1")
+                    }
                 } else {
-                    subTitleLabel.text = "~\(tour.duration) hours"
+                    ratingView.isHidden = true
                 }
             }
         }
@@ -28,10 +35,6 @@ class TourCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     let titleLabel: UILabel = {
@@ -74,10 +77,13 @@ class TourCell: UICollectionViewCell {
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": subTitleLabel]))
         
-        addConstraintsWithFormat("V:|-\((((self.backgroundView?.bounds.height)!/2) + 5))-[v0][v1]-5-|", views: titleLabel, subTitleLabel)
+        addConstraintsWithFormat("V:|-\((((self.backgroundView?.bounds.height)!/2) + 10))-[v0][v1]-5-|", views: titleLabel, subTitleLabel)
         
-        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1, constant: -5))
-        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .right, relatedBy: .equal, toItem: self.backgroundView, attribute: .right, multiplier: 1, constant: -45))
+//        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1, constant: -10))
+//        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .trailing , relatedBy: .equal, toItem: self.backgroundView, attribute: .trailing, multiplier: 1, constant: -40))
+        
+        ratingView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -55).isActive = true
+        ratingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
     }
     
     func setBackgroundImage() {
@@ -90,8 +96,8 @@ class TourCell: UICollectionViewCell {
         self.backgroundView = imageView
         self.backgroundView?.addSubview(blurEffectView)
     }
-}
-
-class Rating: UIView {
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

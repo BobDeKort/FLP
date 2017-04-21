@@ -9,5 +9,9 @@ target 'FLP' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'BraintreeDropIn'
+  pod 'ImageSlideshow'
+  pod 'Cosmos'
+  pod "ImageSlideshow/Alamofire"
+  pod 'IQKeyboardManagerSwift'
 
 end

@@ -29,6 +29,26 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Cosmos.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ImageSlideshow-ImageSlideshow.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ImageSlideshow.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FLP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,6 +57,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1FB06C0FBC7FCBC6D7CDCF2BC3FF879B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F12B93DC16BE209241AC0FBD11DAE3E</key>
 		<dict>
 			<key>primary</key>
@@ -47,17 +72,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>431E24441EA0F59111C76501398C012B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4FDC533A4360A68ABDCE852F04B30927</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5A4051433B7F30BDDB1E5A3BFCFABF25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A60A8A6CB1885CD21FD6F81277C5CA5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

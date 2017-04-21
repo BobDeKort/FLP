@@ -13,32 +13,33 @@ import Braintree
 
 class TourDetailHeader: BaseCell {
     
-    var parent: UIViewController?
+    var parent: TourDetailController?
     
     var tour: Tour?{
         didSet{
             if let tour = tour {
+                imageView.downloadedFrom(link: "\(tour.imageName)-square.")
                 nameLabel.text = tour.title
-                buyButton.setTitle("$\(tour.price)", for: .normal)
                 
-//                creatorLabel.text = "\(tour.user.firstName) + \(tour.user.lastName)"
-                if let updated = tour.updated {
-                    updatedLabel.text = updated
-                }
-                
+                // TODO: get username
+//                creatorLabel.text = ""
+                durationLabel.text = "Duration: " + tour.duration + "hours"
+                buyButton.setTitle("$\(tour.price.format(f: ".2"))", for: .normal)
+                let dateFormatter = DateFormatter()
+                    
+                updatedLabel.text = "Updated: " + dateFormatter.timeSince(from: tour.updated as NSDate)
             }
         }
     }
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 16
         iv.layer.masksToBounds = true
-        iv.image = UIImage(named: "image2")
+        iv.contentMode = .scaleToFill
         return iv
     }()
-
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "TEST"
@@ -61,7 +62,7 @@ class TourDetailHeader: BaseCell {
     
     let durationLabel: UILabel = {
         let label = UILabel()
-        label.text = "duration: 3hr"
+        label.text = "Duration: 3hr"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(white: 0.3, alpha: 0.4)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +71,7 @@ class TourDetailHeader: BaseCell {
     
     let updatedLabel: UILabel = {
         let label = UILabel()
-        label.text = "updated: 3 days ago"
+        label.text = "Updated: 3 days ago"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor(white: 0.3, alpha: 0.4)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -115,36 +116,35 @@ class TourDetailHeader: BaseCell {
     }
     
     func handleBuy(){
-        print("Buy Button")
-        let clientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI4MGE2MDgzMTgyZmYyNzY2Y2RmMjc1YWFmYTM0MmZhMTk0YTIyMmM0ZTFlMWEwZTFiMzgzMTc2NGRjNDdmOWJifGNyZWF0ZWRfYXQ9MjAxNy0wMy0xNFQyMTozNzoxNi4yNzM1ODkzNDUrMDAwMFx1MDAyNm1lcmNoYW50X2lkPXc3N3FwZnprN3o4ODZ6ZHBcdTAwMjZwdWJsaWNfa2V5PTV6YnoybmZzMnM5dHlmd3YiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvdzc3cXBmems3ejg4NnpkcC9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL3c3N3FwZnprN3o4ODZ6ZHAvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tL3c3N3FwZnprN3o4ODZ6ZHAifSwidGhyZWVEU2VjdXJlRW5hYmxlZCI6dHJ1ZSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiZmxvbmVseXBsYW5ldCIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImZsb25lbHlwbGFuZXQiLCJjdXJyZW5jeUlzb0NvZGUiOiJVU0QifSwiY29pbmJhc2VFbmFibGVkIjpmYWxzZSwibWVyY2hhbnRJZCI6Inc3N3FwZnprN3o4ODZ6ZHAiLCJ2ZW5tbyI6Im9mZiJ9"
-        showDropIn(clientTokenOrTokenizationKey: clientToken)
-        
+        if let parent = parent {
+            parent.activityIndicator.startAnimating()
+        }
+        ApiService.sharedInstance.getClientToken { (clientToken) in
+            self.showDropIn(clientTokenOrTokenizationKey: clientToken)
+        }
     }
     
     func showDropIn(clientTokenOrTokenizationKey: String) {
         let request =  BTDropInRequest()
-        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-        { (controller, result, error) in
+        let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request) { (controller, result, error) in
             if (error != nil) {
                 print("ERROR")
             } else if (result?.isCancelled == true) {
                 print("CANCELLED")
             } else if let result = result {
-                // Use the BTDropInResult properties to update your UI
-                // result.paymentOptionType
-                // result.paymentMethod
-                // result.paymentIcon
-                // result.paymentDescription
-                print(result.paymentMethod?.nonce ?? "")
-                print("Succes")
-                ApiService.sharedInstance.checkout(nonce: (result.paymentMethod?.nonce)!)
+                if let nonce = result.paymentMethod?.nonce {
+                    if let tour = self.tour {
+                        ApiService.sharedInstance.purchaseTour(nonce: nonce, tourId: tour.id)
+                    }
+                }
             }
             controller.dismiss(animated: true, completion: nil)
+            if let parent = self.parent {
+                parent.activityIndicator.stopAnimating()
+            }
         }
         if let parent = parent {
             parent.present(dropIn!, animated: true, completion: nil)
         }
-        
-        
     }
 }

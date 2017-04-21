@@ -11,7 +11,7 @@ import UIKit
 
 class AccountHeader: BaseCell {
     
-    var accountViewController: AccountViewController?
+    var accountViewController: MyToursViewController?
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -43,9 +43,9 @@ class AccountHeader: BaseCell {
     }()
     
     func handelSegementedControlPressed(_ sender: UISegmentedControl){
-        if let parent = accountViewController {
+        //if let parent = accountViewController {
 //            parent.currentSegmentedIndex = sender.selectedSegmentIndex
-        }
+        //}
     }
     
     override func setupViews() {

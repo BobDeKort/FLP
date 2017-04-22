@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         layout.minimumInteritemSpacing = 10
         let featuredController = UINavigationController(rootViewController: FeaturedController(collectionViewLayout: layout))
         
-        featuredController.tabBarItem = UITabBarItem(title: "Planyts", image: UIImage(named:"featured"), tag: 1)
+        featuredController.tabBarItem = UITabBarItem(title: "Discover", image: UIImage(named:"featured"), tag: 1)
         
         UINavigationBar.appearance().barTintColor = UIColor.projectColor()
         
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         accountLayout.minimumInteritemSpacing = 20
         
         let accountController = UINavigationController(rootViewController: MyToursViewController(collectionViewLayout: accountLayout))
-        accountController.tabBarItem = UITabBarItem(title: "My Tours", image: UIImage(named:"myTours"), tag: 2)
+        accountController.tabBarItem = UITabBarItem(title: "My Planyts", image: UIImage(named:"myTours"), tag: 2)
         
         
         let tabbarControllers = [featuredController, accountController]

@@ -20,7 +20,7 @@ class TourDetailDescriptionCell: BaseCell {
     
     let textView: UITextView = {
         let tv = UITextView()
-        tv.text = "SAMPLE DESCRIPTION"
+        tv.text = ""
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.isScrollEnabled = false
         return tv

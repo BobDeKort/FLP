@@ -72,8 +72,9 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         switch indexPath.item {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionId, for: indexPath) as! TourDetailDescriptionCell
-            
-            cell.textView.attributedText = descriptionAttributedText()
+            if let tour = tour {
+                cell.textView.attributedText = stringFromHtml(string: tour.description)
+            }
             
             return cell
         case 1:
@@ -137,5 +138,27 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         }
         
         return attributedText
+    }
+    
+    private func getHtmlLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.attributedText = stringFromHtml(string: text)
+        return label
+    }
+    
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                 documentAttributes: nil)
+                return str
+            }
+        } catch {
+        }
+        return nil
     }
 }

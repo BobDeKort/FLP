@@ -23,7 +23,7 @@ class TourDetailHeader: BaseCell {
                 
                 // TODO: get username
 //                creatorLabel.text = ""
-                durationLabel.text = "Duration: " + tour.duration + "hours"
+                durationLabel.text = "Duration: " + tour.duration + " hours"
                 buyButton.setTitle("$\(tour.price.format(f: ".2"))", for: .normal)
                 let dateFormatter = DateFormatter()
                     

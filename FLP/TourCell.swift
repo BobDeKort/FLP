@@ -83,7 +83,7 @@ class TourCell: UICollectionViewCell {
 //        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .trailing , relatedBy: .equal, toItem: self.backgroundView, attribute: .trailing, multiplier: 1, constant: -40))
         
         ratingView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -55).isActive = true
-        ratingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        ratingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
     }
     
     func setBackgroundImage() {

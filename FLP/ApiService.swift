@@ -14,8 +14,8 @@ class ApiService {
     static var sharedInstance = ApiService()
     static var categories: [String]?
     
-//    let baseURL = "http://localhost:3000"
-    let baseURL = "http://www.goplanyt.com"
+    let baseURL = "http://localhost:3000"
+//    let baseURL = "http://www.goplanyt.com"
     
     // MARK: Profile
     
@@ -101,8 +101,6 @@ class ApiService {
             } else {
                 print("Did not get a stop")
             }
-            
-            
         }
     }
     

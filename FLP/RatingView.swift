@@ -36,12 +36,11 @@ class RatingView: UIView {
         addSubview(label)
         addSubview(imageView)
         
-        addConstraint(NSLayoutConstraint(item: label, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 5))
-        addConstraint(NSLayoutConstraint(item: label, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 5))
+        imageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -2).isActive = true
         
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: label, attribute: .centerY, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: label, attribute: .right, multiplier: 1, constant: 0))
-        
+        label.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 3).isActive = true
+        label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

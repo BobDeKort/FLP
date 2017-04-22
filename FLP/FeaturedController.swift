@@ -41,6 +41,8 @@ class FeaturedController: UICollectionViewController, UICollectionViewDelegateFl
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         
+        self.navigationItem.title = "Discover"
+        
         collectionView?.backgroundColor = .white
         collectionView?.register(CategoryCell.self, forCellWithReuseIdentifier: categoryCellId)
     }

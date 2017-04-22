@@ -40,7 +40,7 @@ class MyToursViewController: UICollectionViewController, UICollectionViewDelegat
         
         collectionView!.contentInset = UIEdgeInsets(top: 15, left: 5, bottom: 15, right: 5)
         
-        self.title = "My Tours"
+        self.title = "My Planyts"
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
         

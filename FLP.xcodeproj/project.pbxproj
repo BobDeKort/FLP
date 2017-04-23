@@ -48,6 +48,7 @@
 		C4E295F91E943D24009B2D14 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E295F81E943D24009B2D14 /* MapViewController.swift */; };
 		C4EA1D001E88CEC9000CCF2E /* PurchasedTourDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA1CFF1E88CEC9000CCF2E /* PurchasedTourDetailController.swift */; };
 		C4EA1D031E88CFC9000CCF2E /* PurchasedTourHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA1D021E88CFC8000CCF2E /* PurchasedTourHeaderCell.swift */; };
+		C4EC64EB1EAD264C00866098 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC64EA1EAD264C00866098 /* OnboardingViewController.swift */; };
 		C4FBE6DB1EA897CA00D3501E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FBE6D91EA897CA00D3501E /* SignUpViewController.swift */; };
 		C4FBE6DC1EA897CA00D3501E /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FBE6DA1EA897CA00D3501E /* SignUpViewController.xib */; };
 		C4FBE6DE1EA89D5F00D3501E /* StopTitleDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FBE6DD1EA89D5F00D3501E /* StopTitleDetailCell.swift */; };
@@ -97,6 +98,7 @@
 		C4E295F81E943D24009B2D14 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C4EA1CFF1E88CEC9000CCF2E /* PurchasedTourDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasedTourDetailController.swift; sourceTree = "<group>"; };
 		C4EA1D021E88CFC8000CCF2E /* PurchasedTourHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasedTourHeaderCell.swift; sourceTree = "<group>"; };
+		C4EC64EA1EAD264C00866098 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		C4FBE6D91EA897CA00D3501E /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C4FBE6DA1EA897CA00D3501E /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		C4FBE6DD1EA89D5F00D3501E /* StopTitleDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTitleDetailCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				C420C4D21E79C4B700E4886F /* LoginViewController.xib */,
 				C4FBE6D91EA897CA00D3501E /* SignUpViewController.swift */,
 				C4FBE6DA1EA897CA00D3501E /* SignUpViewController.xib */,
+				C4EC64EA1EAD264C00866098 /* OnboardingViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				C491828C1E63CF450071B8D1 /* TourDetailReviews.swift in Sources */,
 				C44DABD71E56AF93004E6657 /* TourCategory.swift in Sources */,
 				C4C8FE7D1E72276400990E42 /* Stop.swift in Sources */,
+				C4EC64EB1EAD264C00866098 /* OnboardingViewController.swift in Sources */,
 				C44DABDB1E56AFEC004E6657 /* FeaturedController.swift in Sources */,
 				C4C87F251E8D93DF0048D689 /* ThreeButtonComponent.swift in Sources */,
 				C476FDC01E6F53EC00015A0A /* AccountHeader.swift in Sources */,

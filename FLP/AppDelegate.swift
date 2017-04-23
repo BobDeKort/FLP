@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isloggedIn as? String != nil {
             setTabbarControllerAsRoot()
         } else {
-            let vc = LoginViewController()
+//            let vc = LoginViewController()
+            let vc = OnboardingViewController()
             window?.rootViewController = UINavigationController(rootViewController: vc)
         }
         

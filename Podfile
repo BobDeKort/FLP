@@ -13,5 +13,6 @@ target 'FLP' do
   pod 'Cosmos'
   pod "ImageSlideshow/Alamofire"
   pod 'IQKeyboardManagerSwift'
+  pod 'SwiftyOnboard'
 
 end

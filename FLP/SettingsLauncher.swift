@@ -104,8 +104,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             case .Logout:
                 UserDefaults.standard.set(nil, forKey: "user_auth_token")
                 let vc = LoginViewController()
-//                let viewController = UINavigationController(rootViewController: vc)
-//                self.navigationController?.present(vc, animated: true, completion: nil)
+//                let vc = OnboardingViewController()
+                
                 self.navigationController?.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
                 break

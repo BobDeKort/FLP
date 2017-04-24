@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.3.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Braintree/Card (4.7.5):
+    - Braintree/Core
+  - Braintree/Core (4.7.5)
+  - Braintree/UnionPay (4.7.5):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (5.1.0):
+    - BraintreeDropIn/DropIn (= 5.1.0)
+  - BraintreeDropIn/DropIn (5.1.0):
+    - Braintree/Card (~> 4.0)
+    - Braintree/Core (~> 4.0)
+    - Braintree/UnionPay (~> 4.0)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (5.1.0)
+  - Cosmos (9.0.0)
+  - ImageSlideshow (1.2.0):
+    - ImageSlideshow/Core (= 1.2.0)
+  - ImageSlideshow/Alamofire (1.2.0):
+    - AlamofireImage (~> 3.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (1.2.0)
+  - IQKeyboardManagerSwift (4.0.9)
+  - SwiftyOnboard (1.2.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - BraintreeDropIn
+  - Cosmos
+  - ImageSlideshow
+  - ImageSlideshow/Alamofire
+  - IQKeyboardManagerSwift
+  - SwiftyOnboard
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Braintree: 07a215df0cb2d06997e39df564f9ae175908b0e9
+  BraintreeDropIn: ad8e18bd4f3a33105b7bcd418556988ef68272bc
+  Cosmos: 33eee62b2a0418452aef470f711f83c3ea061b7b
+  ImageSlideshow: c1395dcf33f7dba407fd21df0e8c315e8941e209
+  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  SwiftyOnboard: 94580e3e05da927cacd0018c3be1204e4193c69d
+
+PODFILE CHECKSUM: 938797345bfa2944bb9f37033a8e17040003d61f
+
+COCOAPODS: 1.1.1

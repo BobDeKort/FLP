@@ -10,6 +10,8 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    var featuredController: FeaturedController?
+    
     var tourCategory: TourCategory? {
         didSet{
             if let name = tourCategory?.name {
@@ -32,6 +34,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19)
+        label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -43,6 +46,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.translatesAutoresizingMaskIntoConstraints = false
         collectionview.backgroundColor = .clear
+        collectionview.showsHorizontalScrollIndicator = false
         return collectionview
     }()
     
@@ -73,7 +77,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": toursCollectionView]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[nameLabel(30)][v0][v1(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": toursCollectionView, "v1": dividerLineView, "nameLabel": nameLabel]))
+        addConstraintsWithFormat("V:|[v0][v1(\(frame.height - 45))][v2(1)]|", views: nameLabel, toursCollectionView, dividerLineView)
         
     }
     
@@ -91,10 +95,18 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 250, height: frame.height - 50)
+        return CGSize(width: 250, height: frame.height - 55)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 14, 0, 14)
+        return UIEdgeInsetsMake(-5, 14, 0, 14)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let tour = tourCategory?.tours?[indexPath.item] {
+            featuredController?.showTourDetailForTour(tour)
+        } else {
+            print("error: no tour")
+        }
     }
 }

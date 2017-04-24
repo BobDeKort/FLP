@@ -1,0 +1,6 @@
+framework module Pods_FLP {
+  umbrella header "Pods-FLP-umbrella.h"
+
+  export *
+  module * { export * }
+}

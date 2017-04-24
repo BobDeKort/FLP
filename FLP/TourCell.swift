@@ -13,9 +13,21 @@ class TourCell: UICollectionViewCell {
     var tour: Tour? {
         didSet{
             if let tour = tour {
-                titleLabel.text = tour.name
-                imageView.image = UIImage(named: tour.imageName)
-                subTitleLabel.text = "~\(tour.duration) - updated \(tour.updated)"
+                titleLabel.text = tour.title
+                imageView.downloadedFrom(link: "\(tour.imageName)-mobile.")
+                let dateFormatter = DateFormatter()
+                subTitleLabel.text = "\(tour.duration) hours - \(dateFormatter.timeSince(from: tour.updated as NSDate))"
+                
+                if let rating = tour.averageRating {
+                    if rating > 5 {
+                        let newRating = rating/2
+                        ratingView.label.text = newRating.format(f: ".1")
+                    } else {
+                        ratingView.label.text = rating.format(f: ".1")
+                    }
+                } else {
+                    ratingView.isHidden = true
+                }
             }
         }
     }
@@ -23,10 +35,6 @@ class TourCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     let titleLabel: UILabel = {
@@ -45,38 +53,37 @@ class TourCell: UICollectionViewCell {
         return label
     }()
     
+    let ratingView: RatingView = {
+        let rv = RatingView()
+        rv.translatesAutoresizingMaskIntoConstraints = false
+        return rv
+    }()
+    
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 15
+        iv.layer.cornerRadius = 7
         iv.layer.masksToBounds = true
         return iv
     }()
     
-    let starRating: CosmosView = {
-        let view = CosmosView()
-        view.totalStars = 5
-        view.filledColor = .yellow
-        view.emptyColor = .clear
-        view.starSize = 20
-        view.rating = 5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     func setupViews(){
         setBackgroundImage()
-        addSubview(starRating)
         addSubview(titleLabel)
         addSubview(subTitleLabel)
+        addSubview(ratingView)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": titleLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": titleLabel]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": subTitleLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-7-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": subTitleLabel]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-\(self.bounds.width - starRating.bounds.width)-[v0]-7-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": starRating]))
+        addConstraintsWithFormat("V:|-\((((self.backgroundView?.bounds.height)!/2) + 10))-[v0][v1]-5-|", views: titleLabel, subTitleLabel)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-4-[v0]-\((((self.backgroundView?.bounds.height)!/2) - starRating.bounds.height)+5)-[v1][v2]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": starRating, "v1": titleLabel, "v2": subTitleLabel]))
+//        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1, constant: -10))
+//        addConstraint(NSLayoutConstraint(item: ratingView, attribute: .trailing , relatedBy: .equal, toItem: self.backgroundView, attribute: .trailing, multiplier: 1, constant: -40))
+        
+        ratingView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -55).isActive = true
+        ratingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15).isActive = true
     }
     
     func setBackgroundImage() {
@@ -90,5 +97,7 @@ class TourCell: UICollectionViewCell {
         self.backgroundView?.addSubview(blurEffectView)
     }
     
-    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

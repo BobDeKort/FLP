@@ -66,23 +66,8 @@ class PurchasedTourDetailController: UICollectionViewController, UICollectionVie
                 print("Map url is not a url")
             }
         } else {
-            // TODO: Handel no google maps
             showMapView()
         }
-    }
-    
-    func showMapView(){
-        let vc = MapViewController()
-        vc.tour = self.tour
-        vc.stops = self.stops
-        navigationController?.present(vc, animated: true, completion: nil)
-    }
-    
-    func leaveReview(){
-        let vc = LeaveReviewViewController()
-        vc.tourId = tour?.id
-        navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func makeGoogleMapsUrl() -> URL? {
@@ -100,6 +85,20 @@ class PurchasedTourDetailController: UICollectionViewController, UICollectionVie
             }
         }
         return nil
+    }
+    
+    func showMapView(){
+        let vc = MapViewController()
+        vc.tour = self.tour
+        vc.stops = self.stops
+        navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func leaveReview(){
+        let vc = LeaveReviewViewController()
+        vc.tourId = tour?.id
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     // MARK: UICollectionViewDataSource

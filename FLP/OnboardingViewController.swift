@@ -17,34 +17,14 @@ class OnboardingViewController: UIViewController {
     let color: UIColor = UIColor.projectColor()
     var subTitleArray: [String] = ["With Planyt you can easily find new things to do in your city", "All of the Planyts are created for and review by Planyt.", "If you want to discover a new city or re discover your home town.\nDon't wait and Go Planyt!"]
     
-    var gradiant: CAGradientLayer = {
-        //Gradiant for the background view
-        let blue = UIColor(red: 69/255, green: 127/255, blue: 202/255, alpha: 1.0).cgColor
-        let purple = UIColor.projectColor()
-        let gradiant = CAGradientLayer()
-        gradiant.colors = [purple, blue]
-        gradiant.startPoint = CGPoint(x: 0.5, y: 0.18)
-        return gradiant
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        gradient()
         self.navigationController?.navigationBar.isHidden = true
         
-        var frame = view.frame
-        frame.size.height = frame.size.height - 25
-        
-        swiftyOnboard = SwiftyOnboard(frame: frame, style: .light)
+        swiftyOnboard = SwiftyOnboard(frame: view.frame, style: .light)
         view.addSubview(swiftyOnboard)
         swiftyOnboard.dataSource = self
         swiftyOnboard.delegate = self
-    }
-    
-    func gradient() {
-        //Add the gradiant to the view:
-        self.gradiant.frame = view.bounds
-        view.layer.addSublayer(gradiant)
     }
     
     func handleSkip() {
@@ -93,10 +73,10 @@ extension OnboardingViewController: SwiftyOnboardDataSource, SwiftyOnboardDelega
         return view
     }
     
-//    func swiftyOnboardBackgroundColorFor(_ swiftyOnboard: SwiftyOnboard, atIndex index: Int) -> UIColor? {
-//        //Return the background color for the page at index:
-//        return color
-//    }
+    func swiftyOnboardBackgroundColorFor(_ swiftyOnboard: SwiftyOnboard, atIndex index: Int) -> UIColor? {
+        //Return the background color for the page at index:
+        return color
+    }
     
     func swiftyOnboardViewForOverlay(_ swiftyOnboard: SwiftyOnboard) -> SwiftyOnboardOverlay? {
         let overlay = SwiftyOnboardOverlay()

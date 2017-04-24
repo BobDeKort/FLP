@@ -73,7 +73,10 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: descriptionId, for: indexPath) as! TourDetailDescriptionCell
             if let tour = tour {
-                cell.textView.attributedText = stringFromHtml(string: tour.description)
+                let description = stringFromHtml(string: tour.description)
+                
+                cell.textView.attributedText = description
+                cell.textView.font = UIFont.systemFont(ofSize: 15)
             }
             
             return cell
@@ -134,7 +137,7 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
         attributedText.addAttribute(NSParagraphStyleAttributeName, value: style, range: range)
         
         if let desc = tour?.description {
-            attributedText.append(NSAttributedString(string: desc, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 13), NSForegroundColorAttributeName: UIColor.darkGray]))
+            attributedText.append(NSAttributedString(string: desc, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15), NSForegroundColorAttributeName: UIColor.darkGray]))
         }
         
         return attributedText
@@ -158,6 +161,7 @@ class TourDetailController: UICollectionViewController, UICollectionViewDelegate
                 return str
             }
         } catch {
+            return nil
         }
         return nil
     }

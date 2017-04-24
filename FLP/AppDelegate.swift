@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
 //            let vc = LoginViewController()
             let vc = OnboardingViewController()
-            window?.rootViewController = UINavigationController(rootViewController: vc)
+//            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.rootViewController = vc
         }
         
         return true

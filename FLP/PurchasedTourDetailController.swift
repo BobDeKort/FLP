@@ -89,7 +89,7 @@ class PurchasedTourDetailController: UICollectionViewController, UICollectionVie
         if let stops = stops {
             var baseurl = "https://www.google.com/maps/dir/"
             for i in stops {
-                let address = "\(i.title),\(i.address)/"
+                let address = "\(i.address)/"
                 let encodedString = address.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
                 baseurl.append(encodedString!)
             }

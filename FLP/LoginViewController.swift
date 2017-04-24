@@ -52,8 +52,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LoginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
+    var onboardingController: OnboardingViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.isHidden = true 
         setupButtons()
         setupTextfields()
@@ -86,8 +89,13 @@ class LoginViewController: UIViewController {
     }
     
     func loginSuccess(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setTabbarControllerAsRoot()
+        self.dismiss(animated: true, completion: nil)
+        if let onboarding = onboardingController {
+            onboarding.LoginSucces()
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setTabbarControllerAsRoot()
+        }
     }
     
     func presentAlert(message: String) {

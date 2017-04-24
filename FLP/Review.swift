@@ -13,14 +13,16 @@ class Review {
     var title: String
     var content: String
     var rating: NSNumber
+    var username: String
     var user: String
     var tour: String
     
-    init(id: String, title: String, content: String, rating: NSNumber, user: String, tour: String) {
+    init(id: String, title: String, content: String, rating: NSNumber, username: String, user: String, tour: String) {
         self.id = id
         self.title = title
         self.content = content
         self.rating = rating
+        self.username = username
         self.user = user
         self.tour = tour
     }
@@ -37,6 +39,8 @@ class Review {
                 return nil
         }
         
-        self.init(id: id, title: title, content: content, rating: rating, user: user, tour: tour)
+        let username = json["username"] as? String
+        
+        self.init(id: id, title: title, content: content, rating: rating, username: username ?? "anonymous", user: user, tour: tour)
     }
 }

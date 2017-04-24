@@ -21,6 +21,7 @@ class TourDetailDescriptionCell: BaseCell {
     let textView: UITextView = {
         let tv = UITextView()
         tv.text = ""
+        tv.font = UIFont.systemFont(ofSize: 14)
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.isScrollEnabled = false
         return tv
@@ -41,7 +42,7 @@ class TourDetailDescriptionCell: BaseCell {
         
         addConstraintsWithFormat("H:|-14-[v0]-8-|", views: titleLabel)
         addConstraintsWithFormat("H:|-14-[v0]-14-|", views: dividerLineView)
-        addConstraintsWithFormat("H:|-8-[v0]-20-|", views: textView)
+        addConstraintsWithFormat("H:|-10-[v0]-10-|", views: textView)
         
         addConstraintsWithFormat("V:|-4-[v0]-4-[v1(1)]-4-[v2]|", views: titleLabel, dividerLineView, textView)
     }

@@ -29,10 +29,13 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gradient()
+//        gradient()
         self.navigationController?.navigationBar.isHidden = true
         
-        swiftyOnboard = SwiftyOnboard(frame: view.frame, style: .light)
+        var frame = view.frame
+        frame.size.height = frame.size.height - 25
+        
+        swiftyOnboard = SwiftyOnboard(frame: frame, style: .light)
         view.addSubview(swiftyOnboard)
         swiftyOnboard.dataSource = self
         swiftyOnboard.delegate = self
@@ -55,7 +58,14 @@ class OnboardingViewController: UIViewController {
     
     func handleLogin(){
         let vc = LoginViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        vc.onboardingController = self
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func LoginSucces(){
+        self.dismiss(animated:true, completion: nil)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.setTabbarControllerAsRoot()
     }
 }
 
@@ -83,10 +93,10 @@ extension OnboardingViewController: SwiftyOnboardDataSource, SwiftyOnboardDelega
         return view
     }
     
-    func swiftyOnboardBackgroundColorFor(_ swiftyOnboard: SwiftyOnboard, atIndex index: Int) -> UIColor? {
-        //Return the background color for the page at index:
-        return color
-    }
+//    func swiftyOnboardBackgroundColorFor(_ swiftyOnboard: SwiftyOnboard, atIndex index: Int) -> UIColor? {
+//        //Return the background color for the page at index:
+//        return color
+//    }
     
     func swiftyOnboardViewForOverlay(_ swiftyOnboard: SwiftyOnboard) -> SwiftyOnboardOverlay? {
         let overlay = SwiftyOnboardOverlay()
